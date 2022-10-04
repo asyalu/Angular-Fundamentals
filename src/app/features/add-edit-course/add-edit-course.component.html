@@ -1,0 +1,44 @@
+<form class="form">
+  <div class="title-wrapper">
+    <app-input
+      class="title"
+      type="text"
+      label="Title"
+      error="Title is required"
+      required
+    ></app-input>
+    <app-button title="Create course"></app-button>
+  </div>
+  <label class="label">
+    <textarea class="description"></textarea>
+  </label>
+  <div class="author-wrapper">
+    <div class="add-author">
+      <h3 class="author-title">Add author</h3>
+      <app-input
+        class="title"
+        type="text"
+        label="Author name"
+        error="Title is required"
+      ></app-input>
+      <app-button title="Create author"></app-button>
+      <h3 class="author-title">Duration</h3>
+      <app-input
+        class="title"
+        type="text"
+        label="Author name"
+        error="Title is required"
+      ></app-input>
+      <div class="duration">Duration 00:00 hours</div>
+    </div>
+    <div class="authors-list">
+      <h3>Author list</h3>
+      <ul class="list">
+        <li class="list-item" *ngFor="let item of authorList">
+          {{ item.name }}
+          <app-button class="delete-button" title="Delete author"></app-button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>

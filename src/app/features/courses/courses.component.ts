@@ -12,5 +12,9 @@ export class CoursesComponent implements OnInit {
   infoText: string = `Please use the 'Add new course' button to add your first course`;
   infoButtonTitle: string = 'Add new course';
 
+  getSearch(value: string) {
+    console.log(value);
+  }
+
   ngOnInit(): void {}
 }

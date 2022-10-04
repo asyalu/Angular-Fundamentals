@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <label class="label">
+    {{ label }}
+    <input
+      class="input"
+      [type]="type"
+      [placeholder]="placeholder"
+      [(ngModel)]="inputValue"
+      ngModel
+      [name]="label"
+      [id]="label"
+      #customInput="ngModel"
+    />
+  </label>
+  <p
+    *ngIf="customInput.invalid && (customInput.dirty || customInput.touched)"
+    class="validation-error"
+  >
+    {{ error }}
+  </p>
+</div>
