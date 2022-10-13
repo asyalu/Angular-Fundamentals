@@ -11,7 +11,6 @@ export class CoursesComponent implements OnInit {
   infoTitle: string = 'Your list is empty';
   infoText: string = `Please use the 'Add new course' button to add your first course`;
   infoButtonTitle: string = 'Add new course';
-  constructor() {}
 
   ngOnInit(): void {}
 }

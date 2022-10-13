@@ -16,7 +16,7 @@ export class CourseComponent implements OnInit {
   deleteButton: IconDefinition = faTrash;
   constructor() {}
 
-  showButtons() {
+  showButtons(): void {
     this.buttonsVisible = !this.buttonsVisible;
   }
 

@@ -9,7 +9,6 @@ export class InfoComponent implements OnInit {
   @Input() title: string = 'title';
   @Input() text: string = 'text';
   @Input() buttonTitle: string = '';
-  constructor() {}
 
   ngOnInit(): void {}
 }
