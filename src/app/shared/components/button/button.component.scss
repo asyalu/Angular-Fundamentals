@@ -1,0 +1,13 @@
+.app-button {
+  padding: 4px 8px;
+  border: 1px solid red;
+  cursor: pointer;
+
+  &:hover {
+    scale: 1.1;
+  }
+
+  &:focus {
+    border-color: black;
+  }
+}

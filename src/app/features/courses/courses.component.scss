@@ -1,0 +1,17 @@
+.item {
+  list-style-type: none;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+app-header {
+  flex: 1;
+}

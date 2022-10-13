@@ -1,0 +1,16 @@
+<div class="course">
+  <div>
+    <h3>{{ course.title }}</h3>
+    <div>{{ course.description }}</div>
+  </div>
+  <div>
+    <p>Authors: {{ course.authors }}</p>
+    <p>Duration: {{ course.duration }}</p>
+    <p>Created: {{ course.created }}</p>
+    <div class="controls">
+      <app-button [title]="buttonTitle" (click)="showButtons()"></app-button>
+      <app-button *ngIf="buttonsVisible" [icon]="editButton"></app-button>
+      <app-button *ngIf="buttonsVisible" [icon]="deleteButton"></app-button>
+    </div>
+  </div>
+</div>

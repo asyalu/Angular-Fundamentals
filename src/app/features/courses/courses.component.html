@@ -1,0 +1,13 @@
+<main class="main">
+  <app-header></app-header>
+  <ul class="list">
+    <li class="item" *ngFor="let item of courses">
+      <app-course [course]="item"> </app-course>
+    </li>
+  </ul>
+  <app-info
+    [text]="infoText"
+    [title]="infoTitle"
+    [buttonTitle]="infoButtonTitle"
+  ></app-info>
+</main>

@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1%;
+  border: 1px solid red;
+}
+
+.controls {
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+  align-items: center;
+}
