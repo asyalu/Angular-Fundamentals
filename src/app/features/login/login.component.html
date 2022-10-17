@@ -1,3 +1,4 @@
+<app-header></app-header>
 <form #loginForm="ngForm" class="login">
   <h3>{{ title }}</h3>
   <label class="label">
@@ -39,7 +40,15 @@
       Password is required
     </p>
   </label>
-  <app-button [title]="title"></app-button>
+  <app-button
+    [title]="title"
+    (click)="onSubmit()"
+    [disabled]="!!(inputPassword.invalid || inputEmail.invalid)"
+  ></app-button>
   <p>{{ registrationDescription }}</p>
-  <a href="">{{ registration }}</a>
+  <a
+    [routerLink]="routerLinkRegistration"
+    routerLinkActive="router-link-active"
+    >{{ registration }}</a
+  >
 </form>

@@ -1,19 +1,29 @@
+import { FilterPipe } from './pipes/filter.pipe';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { EmailValidatorDirective } from './validators/email-validator.directive';
-import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { ButtonComponent } from './components/button/button.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoComponent } from './components/info/info.component';
 import { SearchComponent } from './components/search/search.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InputComponent } from './components/input/input.component';
+import { DurationPipe } from './pipes/duration-pipe.pipe';
+import { StringJoinerPipe } from './pipes/string-joiner.pipe';
+import { CreationDatePipe } from './pipes/creation-date.pipe';
+import { HeaderComponent } from './components/header/header.component';
 
 const COMPONENTS = [
   ButtonComponent,
   InfoComponent,
   SearchComponent,
-  InputComponent,
   EmailValidatorDirective,
+  DurationPipe,
+  StringJoinerPipe,
+  CreationDatePipe,
+  FilterPipe,
+  HeaderComponent,
+  NotFoundComponent,
 ];
 
 @NgModule({

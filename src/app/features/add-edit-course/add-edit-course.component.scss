@@ -1,15 +1,23 @@
-.form {
+:host {
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  padding: 10px;
-  border: 1px solid turquoise;
+  align-items: center;
+}
+
+.form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .title-wrapper {
+  height: 56px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -18,6 +26,7 @@
 }
 
 .label {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -25,24 +34,32 @@
 .description {
   width: 100%;
   height: 200px;
+  resize: none;
+}
+
+.description-label {
+  width: 100%;
 }
 
 .list-item {
   display: flex;
   justify-content: space-between;
-  margin: 0;
+  padding: 5px;
+  margin: 5px;
   list-style-type: none;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .delete-button {
   margin-left: 50px;
 }
 
-.author-wrapper {
+.duration-author-wrapper {
   display: flex;
 }
 
-.add-author {
+.duration-author {
   width: 50%;
 }
 
@@ -55,4 +72,63 @@
   flex-direction: column;
   align-items: center;
   width: 50%;
+
+  & .author-list-title {
+    margin-top: 20px;
+  }
+}
+
+.author-input-wrapper {
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0;
+}
+
+.label {
+  margin-right: 20px;
+}
+
+.title-label-wrapper {
+  height: 56px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.validation-error {
+  color: red;
+  font-size: 10px;
+}
+
+.duration-wrapper {
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.duration-label-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.author-label, .duration-label {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.back-to-course {
+  margin-top: 20px;
 }

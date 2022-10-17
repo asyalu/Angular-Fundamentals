@@ -1,3 +1,4 @@
+<app-header></app-header>
 <form #loginForm="ngForm" class="login">
   <h3>{{ title }}</h3>
   <label class="label">
@@ -12,10 +13,8 @@
       id="name"
     />
     <p
-      *ngIf="
-        inputName.invalid && (inputPassword.dirty || inputPassword.touched)
-      "
       class="validation-error"
+      *ngIf="inputName.invalid && (inputName.dirty || inputName.touched)"
     >
       Name is required
     </p>
@@ -59,7 +58,13 @@
       Password is required
     </p>
   </label>
-  <app-button [title]="title"></app-button>
+  <app-button
+    [title]="title"
+    [disabled]="
+      !!(inputPassword.invalid || inputEmail.invalid || inputName.invalid)
+    "
+    (click)="onSubmit()"
+  ></app-button>
   <p>{{ registrationDescription }}</p>
-  <a href="">{{ login }}</a>
+  <a [routerLink]="routerLinkLogin">{{ login }}</a>
 </form>

@@ -1,17 +1,21 @@
 <main class="main">
   <app-header></app-header>
   <app-search (searchValue)="getSearch($event)"></app-search>
-  <ul class="list">
-    <li class="item" *ngFor="let item of courses">
-      <app-course [course]="item"> </app-course>
+  <ul class="list" *ngIf="courses">
+    <li class="item" *ngFor="let item of courses | filter: searchText">
+      <app-course [course]="item" (deleteButtonAction)="deleteCourse($event)">
+      </app-course>
     </li>
   </ul>
   <app-info
+    *ngIf="!courses && !fetch"
     [text]="infoText"
     [title]="infoTitle"
-    [buttonTitle]="infoButtonTitle"
   ></app-info>
-  <app-login></app-login>
-  <app-registration></app-registration>
-  <app-add-edit-course></app-add-edit-course>
+  <app-button
+    *ngIf="!fetch"
+    class="add-course"
+    [title]="infoButtonTitle"
+    (click)="addCourse()"
+  ></app-button>
 </main>

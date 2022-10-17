@@ -12,8 +12,6 @@ import { NG_VALIDATORS, AbstractControl } from '@angular/forms';
   ],
 })
 export class EmailValidatorDirective {
-  constructor() {}
-
   validate(control: AbstractControl): { [key: string]: any } | null {
     const re =
       /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;

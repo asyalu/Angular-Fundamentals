@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  userName: string = 'Tom';
+  constructor(private auth: AuthService, private router: Router) {
+    this.userName = this.auth.user.name;
+    this.auth.isAuthorized$.subscribe((s) => (this.isAuthorized = s));
+  }
+  userName: string | undefined = '';
   buttonTitle: string = 'Logout';
+  isAuthorized: boolean = false;
+
+  logout() {
+    this.auth.logout().subscribe();
+    this.router.navigate(['/login']);
+  }
 
   ngOnInit(): void {}
 }

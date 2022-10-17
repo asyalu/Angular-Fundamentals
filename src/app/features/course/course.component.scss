@@ -1,6 +1,25 @@
-.course {
+:host {
   display: flex;
-  border: 1px solid pink;
+  flex-direction: column;
+  align-items: center;
+}
+
+.course {
+  width: 95%;
+  display: flex;
   margin: 20px;
   padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.description {
+  width: 80%;
+}
+
+app-button {
+  margin-right: 10px;
+}
+
+.item { 
+  margin-bottom: 10px;
 }

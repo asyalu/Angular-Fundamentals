@@ -5,6 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CreationDatePipe implements PipeTransform {
   transform(value: Date): string {
-    return `${value.getDay()}.${value.getMonth()}.${value.getFullYear()}`;
+    return value
+      ? `${value.getDay()}.${value.getMonth()}.${value.getFullYear()}`
+      : 'unknown';
   }
 }

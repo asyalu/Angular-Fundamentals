@@ -1,4 +1,7 @@
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/shared/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -6,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-  user: { email: string; password: string; name: string } = {
+  user: IUser = {
     email: '',
     password: '',
     name: '',
@@ -17,7 +20,15 @@ export class RegistrationComponent implements OnInit {
   login: string = 'Login';
   password: string = 'Password';
   name: string = 'Name';
-  constructor() {}
+  routerLinkLogin: string = '/login';
+
+  constructor(private auth: AuthService, private router: Router) {}
+
+  onSubmit(): void {
+    this.auth
+      .register(this.user)
+      .subscribe(() => this.router.navigate(['/login']));
+  }
 
   ngOnInit(): void {}
 }
