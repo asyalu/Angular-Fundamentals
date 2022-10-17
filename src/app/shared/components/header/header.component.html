@@ -1,6 +1,6 @@
 <header class="header">
-  <img class="logo" src="assets/training.svg" />
-  <div class="controls">
+  <img class="logo" src="assets/logo.svg" />
+  <div class="controls" *ngIf="isAuthorized">
     <h3>{{ userName }}</h3>
     <app-button [title]="buttonTitle"></app-button>
   </div>

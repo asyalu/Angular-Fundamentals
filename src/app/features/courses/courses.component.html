@@ -1,13 +1,18 @@
 <main class="main">
   <app-header></app-header>
-  <ul class="list">
+  <app-search (searchValue)="getSearch($event)"></app-search>
+  <ul class="list" *ngIf="courses.length">
     <li class="item" *ngFor="let item of courses">
       <app-course [course]="item"> </app-course>
     </li>
   </ul>
   <app-info
+    *ngIf="!courses.length"
     [text]="infoText"
     [title]="infoTitle"
-    [buttonTitle]="infoButtonTitle"
   ></app-info>
+  <app-button class="add-course" [title]="infoButtonTitle"></app-button>k
 </main>
+<app-login></app-login>
+<app-registration></app-registration>
+<app-add-edit-course></app-add-edit-course>

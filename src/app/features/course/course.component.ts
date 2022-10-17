@@ -1,5 +1,5 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { ICourse, courses } from './../../models/item';
+import { ICourse } from 'src/app/shared/interfaces';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,16 +9,22 @@ import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./course.component.scss'],
 })
 export class CourseComponent implements OnInit {
-  @Input() course: ICourse = courses[0];
+  @Input() course: ICourse = {
+    title: '',
+    description: '',
+    authors: [],
+    created: new Date(),
+    duration: 0,
+  };
   @Output() buttonsVisible: boolean = false;
+  authorList: string[] = [];
   buttonTitle: string = 'Show course';
   editButton: IconDefinition = faPencil;
   deleteButton: IconDefinition = faTrash;
-  constructor() {}
 
   showButtons(): void {
     this.buttonsVisible = !this.buttonsVisible;
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 }

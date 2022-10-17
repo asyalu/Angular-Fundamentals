@@ -1,16 +1,18 @@
 <div class="course">
-  <div>
+  <div class="description">
     <h3>{{ course.title }}</h3>
     <div>{{ course.description }}</div>
   </div>
   <div>
-    <p>Authors: {{ course.authors }}</p>
-    <p>Duration: {{ course.duration }}</p>
-    <p>Created: {{ course.created }}</p>
+    <p class="item">
+      Authors: <span *ngFor="let author of authorList"> {{ author }}</span>
+    </p>
+    <p class="item">Duration: {{ course.duration | duration }}</p>
+    <p class="item">Created: {{ course.created | creationDate }}</p>
     <div class="controls">
       <app-button [title]="buttonTitle" (click)="showButtons()"></app-button>
-      <app-button *ngIf="buttonsVisible" [icon]="editButton"></app-button>
-      <app-button *ngIf="buttonsVisible" [icon]="deleteButton"></app-button>
+      <app-button [icon]="editButton"></app-button>
+      <app-button [icon]="deleteButton"></app-button>
     </div>
   </div>
 </div>

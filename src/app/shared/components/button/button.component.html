@@ -1,4 +1,4 @@
-<button class="app-button">
+<button class="app-button" [disabled]="disabled" [type]="type">
   {{ title }}
   <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
 </button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { courses, ICourse } from 'src/app/models/item';
+import { ICourse } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-courses',
@@ -7,10 +7,14 @@ import { courses, ICourse } from 'src/app/models/item';
   styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
-  courses: ICourse[] = courses;
+  courses: ICourse[] = [];
   infoTitle: string = 'Your list is empty';
   infoText: string = `Please use the 'Add new course' button to add your first course`;
   infoButtonTitle: string = 'Add new course';
 
   ngOnInit(): void {}
+
+  getSearch(value: string) {
+    console.log(value);
+  }
 }

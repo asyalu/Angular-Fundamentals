@@ -1,0 +1,85 @@
+<app-header></app-header>
+<form [formGroup]="form" class="form">
+  <div class="title-wrapper">
+    <div class="title-label-wrapper">
+      <label class="label" for="author">
+        Title
+        <input
+          formControlName="title"
+          class="input"
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter title"
+        />
+      </label>
+      <p
+        *ngIf="
+          form.get('title')!.invalid &&
+          (form.get('title')!.dirty || form.get('title')!.touched)
+        "
+        class="validation-error"
+      >
+        Title is required
+      </p>
+    </div>
+    <app-button
+      title="{{ isCreate ? 'Create' : 'Edit' }} course"
+      type="submit"
+      [disabled]="form.invalid"
+    ></app-button>
+  </div>
+  <label class="label description-label">
+    Description
+    <textarea
+      class="description"
+      placeholder="Enter description"
+      formControlName="description"
+    ></textarea>
+  </label>
+  <div class="duration-author-wrapper">
+    <div class="duration-author">
+      <div class="author-input-wrapper">
+        <div class="label-wrapper">
+          <label class="author-label" for="author">
+            Author
+            <input class="input" type="text" name="author" id="author" />
+          </label>
+        </div>
+        <app-button title="Create author"></app-button>
+      </div>
+      <div class="duration-wrapper">
+        <div class="duration-label-wrapper">
+          <label class="duration-label" for="duration">
+            Duration
+            <input
+              class="input"
+              type="text"
+              placeholder="Enter minutes"
+              formControlName="duration"
+            />
+          </label>
+          <div class="duration">{{ course.duration | duration }}</div>
+        </div>
+        <p
+          *ngIf="
+            form.get('duration')!.invalid &&
+            (form.get('duration')!.dirty || form.get('duration')!.touched)
+          "
+          class="validation-error"
+        >
+          Duration is required
+        </p>
+      </div>
+    </div>
+    <div class="authors-list">
+      <h3 class="author-list-title">Author list</h3>
+      <ul class="list">
+        <li class="list-item" *ngFor="let author of authorList">
+          {{ author }}
+          <app-button class="delete-button" title="Delete author"></app-button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>

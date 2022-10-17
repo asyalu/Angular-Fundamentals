@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  userName: string = 'Tom';
+  userName: string | undefined = '';
   buttonTitle: string = 'Logout';
+  isAuthorized: boolean = false;
 
   ngOnInit(): void {}
 }
