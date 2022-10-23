@@ -8,7 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 export class InfoComponent implements OnInit {
   @Input() title: string = 'title';
   @Input() text: string = 'text';
-  @Input() buttonTitle: string = '';
 
   ngOnInit(): void {}
 }

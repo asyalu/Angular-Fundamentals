@@ -1,16 +1,32 @@
+<app-header *ngIf="!isView"></app-header>
 <div class="course">
-  <div>
+  <div class="description">
     <h3>{{ course.title }}</h3>
     <div>{{ course.description }}</div>
   </div>
   <div>
-    <p>Authors: {{ course.authors }}</p>
-    <p>Duration: {{ course.duration }}</p>
-    <p>Created: {{ course.created }}</p>
+    <p class="item">
+      Authors: <span> {{ authorList.join(", ") }}</span>
+    </p>
+    <p class="item">Duration: {{ course.duration | duration }}</p>
+    <p class="item">Created: {{ course.creationDate }}</p>
     <div class="controls">
-      <app-button [title]="buttonTitle" (click)="showButtons()"></app-button>
-      <app-button *ngIf="buttonsVisible" [icon]="editButton"></app-button>
-      <app-button *ngIf="buttonsVisible" [icon]="deleteButton"></app-button>
+      <app-button
+        *ngIf="isView"
+        [title]="buttonTitle"
+        [routerLink]="['/course', course.id]"
+      ></app-button>
+      <app-button
+        [icon]="editButton"
+        [routerLink]="['/courses/edit', course.id]"
+      ></app-button>
+      <app-button [icon]="deleteButton" (click)="deleteCourse()"></app-button>
     </div>
   </div>
 </div>
+<app-button
+  *ngIf="!isView"
+  title="back to courses"
+  [routerLink]="['/courses']"
+  class="back-to-course"
+></app-button>
