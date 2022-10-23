@@ -1,5 +1,7 @@
+import { ICourse } from 'src/app/shared/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Inscriptions } from 'src/app/shared/enums/enums';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -10,13 +12,8 @@ export class AddEditCourseComponent implements OnInit {
   isCreate = true;
   form!: FormGroup;
   authorList: any = [];
-  course: any = {
-    title: '2',
-    description: '',
-    authors: [],
-    created: new Date(),
-    duration: null,
-  };
+  course!: ICourse;
+  isRequired: Inscriptions = Inscriptions.isRequired;
 
   ngOnInit() {
     this.form = new FormGroup({

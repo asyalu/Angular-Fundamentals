@@ -16,7 +16,7 @@
       class="validation-error"
       *ngIf="inputName.invalid && (inputName.dirty || inputName.touched)"
     >
-      Name is required
+      Name {{ isRequired }}
     </p>
   </label>
   <label class="label">
@@ -35,7 +35,7 @@
       *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)"
       class="validation-error"
     >
-      Email is required
+      Email {{ isRequired }}
     </p>
   </label>
   <label class="label">
@@ -55,7 +55,7 @@
       "
       class="validation-error"
     >
-      Password is required
+      Password {{ isRequired }}
     </p>
   </label>
   <app-button

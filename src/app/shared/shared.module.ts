@@ -1,7 +1,6 @@
+import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
-import { FormsModule } from '@angular/forms';
 import { EmailValidatorDirective } from './validators/email-validator.directive';
-import { ButtonComponent } from './components/button/button.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoComponent } from './components/info/info.component';

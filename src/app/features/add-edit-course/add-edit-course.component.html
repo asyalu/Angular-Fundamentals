@@ -20,7 +20,7 @@
         "
         class="validation-error"
       >
-        Title is required
+        Title {{ isRequired }}
       </p>
     </div>
     <app-button
@@ -36,6 +36,12 @@
       placeholder="Enter description"
       formControlName="description"
     ></textarea>
+    <p
+      *ngIf="form.get('author')!.touched && authorList.length === 0"
+      class="validation-error"
+    >
+      Need at least 1 author
+    </p>
   </label>
   <div class="duration-author-wrapper">
     <div class="duration-author">
@@ -68,7 +74,7 @@
           "
           class="validation-error"
         >
-          Duration is required
+          Duration {{ isRequired }}
         </p>
       </div>
     </div>

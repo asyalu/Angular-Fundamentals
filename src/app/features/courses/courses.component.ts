@@ -14,7 +14,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getSearch(value: string) {
+  getSearch(value: string): void {
     console.log(value);
   }
 }

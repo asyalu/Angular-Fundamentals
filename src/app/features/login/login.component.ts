@@ -1,5 +1,6 @@
 import { IUser } from 'src/app/shared/interfaces';
 import { Component, OnInit } from '@angular/core';
+import { Inscriptions } from 'src/app/shared/enums/enums';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
   registration: string = 'Registration';
   email: string = 'Email';
   password: string = 'Password';
+  routerLinkRegistration: string = '/registration';
+  isRequired: Inscriptions = Inscriptions.isRequired;
 
   ngOnInit(): void {}
 }
