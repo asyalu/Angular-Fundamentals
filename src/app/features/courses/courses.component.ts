@@ -1,7 +1,6 @@
+import { CoursesStateFacade } from './../../store/courses/courses.facade';
 import { Router } from '@angular/router';
-import { AuthorsService } from 'src/app/services/authors.service';
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from 'src/app/services/courses.service';
 import { ICourse } from 'src/app/shared/interfaces';
 
 @Component({
@@ -17,16 +16,20 @@ export class CoursesComponent implements OnInit {
   infoButtonTitle: string = 'Add new course';
   fetch: boolean = false;
 
-  constructor(private coursesService: CoursesService, private router: Router) {}
+  constructor(
+    private coursesStateFacade: CoursesStateFacade,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.coursesStateFacade.getAllCourses();
     this.getCourses();
   }
 
   getCourses() {
     this.fetch = true;
-    this.coursesService.getAll().subscribe((courses) => {
-      this.courses = courses.result;
+    this.coursesStateFacade.allCourses$.subscribe((courses) => {
+      this.courses = courses;
       this.fetch = false;
     });
   }
@@ -36,7 +39,7 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourse(id: string): void {
-    this.coursesService.deleteCourse(id).subscribe(() => this.getCourses());
+    this.coursesStateFacade.deleteCourse(id);
   }
 
   getSearch(value: string) {

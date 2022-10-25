@@ -1,9 +1,10 @@
+import { CoursesStateFacade } from './../../store/courses/courses.facade';
 import { IAuthor, ICourse } from 'src/app/shared/interfaces';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthorsService } from 'src/app/services/authors.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { switchMap, of } from 'rxjs';
+import { switchMap, of, pipe } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +25,8 @@ export class AddEditCourseComponent implements OnInit {
     private authorsService: AuthorsService,
     private route: ActivatedRoute,
     private router: Router,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private coursesStateFacade: CoursesStateFacade
   ) {}
 
   ngOnInit() {
@@ -40,23 +42,21 @@ export class AddEditCourseComponent implements OnInit {
         switchMap((params: Params): any => {
           if (params['id']) {
             this.isCreate = false;
-            return this.coursesService.getCourse(params['id']);
+            return this.coursesStateFacade.getSingleCourse(params['id']);
           }
-
-          return of(null);
         })
       )
-      .subscribe((course: any) => {
-        if (course) {
-          course.result.authors.map((author: string) => this.getAuthor(author));
-          this.course = { ...course.result, authors: this.authorList };
-          this.form.patchValue({
-            title: course.result.title,
-            description: course.result.description,
-            duration: course.result.duration,
-          });
-        }
+      .subscribe();
+
+    this.coursesStateFacade.course$.subscribe((course) => {
+      this.course = course;
+      course.authors.forEach((author: string) => this.getAuthor(author));
+      this.form.patchValue({
+        title: course.title,
+        description: course.description,
+        duration: course.duration,
       });
+    });
   }
 
   getAuthor(id: string) {
@@ -103,4 +103,7 @@ export class AddEditCourseComponent implements OnInit {
       this.router.navigate(['/courses']);
     });
   }
+}
+function next(): Partial<import('rxjs').Observer<unknown>> | undefined {
+  throw new Error('Function not implemented.');
 }

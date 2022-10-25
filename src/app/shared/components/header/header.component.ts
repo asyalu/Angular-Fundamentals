@@ -1,3 +1,4 @@
+import { AuthStateFacade } from './../../../store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(
+    private auth: AuthService,
+    private authStateFacade: AuthStateFacade
+  ) {
     this.userName = this.auth.user.name;
     this.auth.isAuthorized$.subscribe((s) => (this.isAuthorized = s));
   }
@@ -17,8 +21,7 @@ export class HeaderComponent implements OnInit {
   isAuthorized: boolean = false;
 
   logout() {
-    this.auth.logout().subscribe();
-    this.router.navigate(['/login']);
+    this.authStateFacade.logout();
   }
 
   ngOnInit(): void {}

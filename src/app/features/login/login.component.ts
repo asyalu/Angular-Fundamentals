@@ -1,7 +1,9 @@
+import { UserStateFacade } from './../../store/user/user.facade';
+import { AuthStateFacade } from './../../store/auth/auth.facade';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/shared/interfaces';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +22,25 @@ export class LoginComponent implements OnInit {
   email: string = 'Email';
   password: string = 'Password';
   routerLinkRegistration: string = '/registration';
+  isAuthorized!: Observable<boolean>;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private authStateFacade: AuthStateFacade,
+    private userStateFacade: UserStateFacade,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.isAuthorized = this.authStateFacade.isAuthorized$;
+  }
 
   onSubmit(): void {
-    this.auth
-      .login(this.user)
-      .subscribe(() => this.router.navigate(['/courses']));
+    this.authStateFacade.login(this.user);
+    this.isAuthorized.subscribe((data) => {
+      if (data) {
+        this.router.navigateByUrl('/courses');
+        this.userStateFacade.getCurrentUser();
+      }
+    });
   }
-  ngOnInit(): void {}
 }

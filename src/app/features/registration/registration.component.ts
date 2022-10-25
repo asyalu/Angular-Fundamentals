@@ -1,14 +1,13 @@
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthStateFacade } from './../../store/auth/auth.facade';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   user: IUser = {
     email: '',
     password: '',
@@ -22,13 +21,9 @@ export class RegistrationComponent implements OnInit {
   name: string = 'Name';
   routerLinkLogin: string = '/login';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private authStateFacade: AuthStateFacade) {}
 
   onSubmit(): void {
-    this.auth
-      .register(this.user)
-      .subscribe(() => this.router.navigate(['/login']));
+    this.authStateFacade.register(this.user);
   }
-
-  ngOnInit(): void {}
 }
