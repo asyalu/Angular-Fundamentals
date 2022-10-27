@@ -1,5 +1,5 @@
 <app-header></app-header>
-<form #loginForm="ngForm" class="login">
+<form #loginForm="ngForm" (ngSubmit)="submit()" class="login">
   <h3>{{ title }}</h3>
   <label class="label">
     {{ name }}
@@ -58,12 +58,7 @@
       Password {{ isRequired }}
     </p>
   </label>
-  <app-button
-    [title]="title"
-    [disabled]="
-      !!(inputPassword.invalid || inputEmail.invalid || inputName.invalid)
-    "
-  ></app-button>
+  <app-button [title]="title" type="submit"></app-button>
   <p>{{ registrationDescription }}</p>
   <a>{{ login }}</a>
 </form>

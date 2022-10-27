@@ -1,13 +1,14 @@
 import { IUser } from 'src/app/shared/interfaces';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Inscriptions } from 'src/app/shared/enums/enums';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   user: IUser = {
     email: '',
     password: '',
@@ -20,6 +21,4 @@ export class LoginComponent implements OnInit {
   password: string = 'Password';
   routerLinkRegistration: string = '/registration';
   isRequired: Inscriptions = Inscriptions.isRequired;
-
-  ngOnInit(): void {}
 }

@@ -40,7 +40,7 @@
       *ngIf="form.get('author')!.touched && authorList.length === 0"
       class="validation-error"
     >
-      Need at least 1 author
+      Description {{ isRequired }}
     </p>
   </label>
   <div class="duration-author-wrapper">
@@ -49,9 +49,21 @@
         <div class="label-wrapper">
           <label class="author-label" for="author">
             Author
-            <input class="input" type="text" name="author" id="author" />
+            <input
+              class="input"
+              type="text"
+              name="author"
+              id="author"
+              formControlName="author"
+            />
           </label>
         </div>
+        <p
+          *ngIf="form.get('author')!.touched && authorList.length === 0"
+          class="validation-error"
+        >
+          Need at least 1 author
+        </p>
         <app-button title="Create author"></app-button>
       </div>
       <div class="duration-wrapper">
@@ -65,7 +77,7 @@
               formControlName="duration"
             />
           </label>
-          <div class="duration">{{ course.duration | duration }}</div>
+          <!-- <div class="duration">{{ course.duration | duration }}</div> -->
         </div>
         <p
           *ngIf="

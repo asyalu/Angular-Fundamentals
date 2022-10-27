@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces';
 import { Inscriptions } from 'src/app/shared/enums/enums';
 
@@ -6,8 +6,9 @@ import { Inscriptions } from 'src/app/shared/enums/enums';
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   user: IUser = {
     email: '',
     password: '',
@@ -22,5 +23,5 @@ export class RegistrationComponent implements OnInit {
   routerLinkLogin: string = '/login';
   isRequired: Inscriptions = Inscriptions.isRequired;
 
-  ngOnInit(): void {}
+  submit(): void {}
 }

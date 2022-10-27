@@ -20,6 +20,7 @@ export class AddEditCourseComponent implements OnInit {
       title: new FormControl(null, Validators.required),
       duration: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
+      author: new FormControl(null, Validators.required),
     });
   }
 }
