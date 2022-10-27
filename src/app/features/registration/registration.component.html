@@ -1,1 +1,64 @@
-<p>registration works!</p>
+<app-header></app-header>
+<form #loginForm="ngForm" (ngSubmit)="submit()" class="login">
+  <h3>{{ title }}</h3>
+  <label class="label">
+    {{ name }}
+    <input
+      type="text"
+      #inputName="ngModel"
+      [(ngModel)]="user.name"
+      minlength="6"
+      required
+      name="name"
+      id="name"
+    />
+    <p
+      class="validation-error"
+      *ngIf="inputName.invalid && (inputName.dirty || inputName.touched)"
+    >
+      Name {{ isRequired }}
+    </p>
+  </label>
+  <label class="label">
+    {{ email }}
+    <input
+      type="text"
+      [(ngModel)]="user.email"
+      #inputEmail="ngModel"
+      required
+      ngModel
+      name="email"
+      id="email"
+      appEmailValidation
+    />
+    <p
+      *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)"
+      class="validation-error"
+    >
+      Email {{ isRequired }}
+    </p>
+  </label>
+  <label class="label">
+    {{ password }}
+    <input
+      type="text"
+      #inputPassword="ngModel"
+      [(ngModel)]="user.password"
+      minlength="4"
+      required
+      name="password"
+      id="password"
+    />
+    <p
+      *ngIf="
+        inputPassword.invalid && (inputPassword.dirty || inputPassword.touched)
+      "
+      class="validation-error"
+    >
+      Password {{ isRequired }}
+    </p>
+  </label>
+  <app-button [title]="title" type="submit"></app-button>
+  <p>{{ registrationDescription }}</p>
+  <a>{{ login }}</a>
+</form>

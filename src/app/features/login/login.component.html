@@ -1,1 +1,49 @@
-<p>login works!</p>
+<app-header></app-header>
+<form #loginForm="ngForm" class="login">
+  <h3>{{ title }}</h3>
+  <label class="label">
+    {{ email }}
+    <input
+      type="text"
+      [(ngModel)]="user.email"
+      #inputEmail="ngModel"
+      required
+      ngModel
+      name="email"
+      id="email"
+      appEmailValidation
+    />
+    <p
+      *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)"
+      class="validation-error"
+    >
+      Email {{ isRequired }}
+    </p>
+  </label>
+  <label class="label">
+    {{ password }}
+    <input
+      type="text"
+      #inputPassword="ngModel"
+      [(ngModel)]="user.password"
+      minlength="4"
+      required
+      name="password"
+      id="password"
+    />
+    <p
+      *ngIf="
+        inputPassword.invalid && (inputPassword.dirty || inputPassword.touched)
+      "
+      class="validation-error"
+    >
+      Password {{ isRequired }}
+    </p>
+  </label>
+  <app-button
+    [title]="title"
+    [disabled]="!!(inputPassword.invalid || inputEmail.invalid)"
+  ></app-button>
+  <p>{{ registrationDescription }}</p>
+  <a>{{ registration }}</a>
+</form>

@@ -1,7 +1,11 @@
 .app-button {
-  padding: 4px 8px;
-  border: 1px solid red;
+  padding: 10px 14px;
+  border: 1px solid black;
   cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  background-color: black;
+  text-transform: uppercase;
 
   &:hover {
     scale: 1.1;
@@ -9,5 +13,12 @@
 
   &:focus {
     border-color: black;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid gray;
+    scale: unset;
+    background-color: gray;
   }
 }
