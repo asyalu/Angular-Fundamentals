@@ -1,1 +1,12 @@
-<p>search works!</p>
+<div class="search">
+  <input
+    class="input"
+    type="text"
+    #input
+    (keyup.enter)="getValue(input.value)"
+  />
+  <app-button
+    [title]="buttonTitle"
+    (click)="getValue(input.value)"
+  ></app-button>
+</div>

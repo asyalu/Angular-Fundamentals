@@ -1,1 +1,70 @@
-<p>registration works!</p>
+<app-header></app-header>
+<form #loginForm="ngForm" class="login">
+  <h3>{{ title }}</h3>
+  <label class="label">
+    {{ name }}
+    <input
+      type="text"
+      #inputName="ngModel"
+      [(ngModel)]="user.name"
+      minlength="6"
+      required
+      name="name"
+      id="name"
+    />
+    <p
+      class="validation-error"
+      *ngIf="inputName.invalid && (inputName.dirty || inputName.touched)"
+    >
+      Name is required
+    </p>
+  </label>
+  <label class="label">
+    {{ email }}
+    <input
+      type="text"
+      [(ngModel)]="user.email"
+      #inputEmail="ngModel"
+      required
+      ngModel
+      name="email"
+      id="email"
+      appEmailValidation
+    />
+    <p
+      *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)"
+      class="validation-error"
+    >
+      Email is required
+    </p>
+  </label>
+  <label class="label">
+    {{ password }}
+    <input
+      type="text"
+      #inputPassword="ngModel"
+      [(ngModel)]="user.password"
+      minlength="4"
+      required
+      name="password"
+      id="password"
+    />
+    <p
+      *ngIf="
+        inputPassword.invalid && (inputPassword.dirty || inputPassword.touched)
+      "
+      class="validation-error"
+    >
+      Password is required
+    </p>
+  </label>
+  <app-button
+    [title]="title"
+    [disabled]="
+      !!(inputPassword.invalid || inputEmail.invalid || inputName.invalid)
+    "
+    (click)="onSubmit()"
+  ></app-button>
+  <p>{{ registrationDescription }}</p>
+  <a [routerLink]="routerLinkLogin">{{ login }}</a>
+</form>
