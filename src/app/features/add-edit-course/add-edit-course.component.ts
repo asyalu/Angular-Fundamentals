@@ -1,10 +1,10 @@
 import { CoursesStateFacade } from './../../store/courses/courses.facade';
 import { IAuthor, ICourse } from 'src/app/shared/interfaces';
 import { CoursesService } from 'src/app/services/courses.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthorsService } from 'src/app/services/authors.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { switchMap, of, pipe } from 'rxjs';
+import { switchMap, Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -14,12 +14,15 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './add-edit-course.component.html',
   styleUrls: ['./add-edit-course.component.scss'],
 })
-export class AddEditCourseComponent implements OnInit {
+export class AddEditCourseComponent implements OnInit, OnDestroy {
   isCreate = true;
   form!: FormGroup;
   authorList: IAuthor[] = [];
   course!: ICourse;
   deleteButton: IconDefinition = faTrash;
+  routeSub!: Subscription;
+  coursesSub!: Subscription;
+  authSub!: Subscription;
 
   constructor(
     private authorsService: AuthorsService,
@@ -37,7 +40,7 @@ export class AddEditCourseComponent implements OnInit {
       author: new FormControl(null),
     });
 
-    this.route.params
+    this.routeSub = this.route.params
       .pipe(
         switchMap((params: Params): any => {
           if (params['id']) {
@@ -48,7 +51,7 @@ export class AddEditCourseComponent implements OnInit {
       )
       .subscribe();
 
-    this.coursesStateFacade.course$.subscribe((course) => {
+    this.coursesSub = this.coursesStateFacade.course$.subscribe((course) => {
       this.course = course;
       course.authors.forEach((author: string) => this.getAuthor(author));
       this.form.patchValue({
@@ -66,7 +69,7 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   createAuthor(name: string) {
-    this.authorsService.addAuthor(name).subscribe((author) => {
+    this.authSub = this.authorsService.addAuthor(name).subscribe((author) => {
       this.authorList.push(author.result);
       this.form.patchValue({
         author: '',
@@ -103,7 +106,10 @@ export class AddEditCourseComponent implements OnInit {
       this.router.navigate(['/courses']);
     });
   }
-}
-function next(): Partial<import('rxjs').Observer<unknown>> | undefined {
-  throw new Error('Function not implemented.');
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
+    this.coursesSub.unsubscribe();
+    this.authSub.unsubscribe();
+  }
 }

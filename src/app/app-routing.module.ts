@@ -23,11 +23,11 @@ const appRoutes: Routes = [
   {
     path: 'courses',
     component: CoursesComponent,
-    loadChildren: () =>
-      import('./features/courses/courses.module').then(
-        (mod) => mod.CoursesModule
-      ),
-    canLoad: [AuthorizedGuard],
+    // loadChildren: () =>
+    //   import('./features/courses/courses.module').then(
+    //     (mod) => mod.CoursesModule
+    //   ),
+    // canLoad: [AuthorizedGuard],
   },
   {
     path: '',

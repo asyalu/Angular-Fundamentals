@@ -36,6 +36,9 @@
       placeholder="Enter description"
       formControlName="description"
     ></textarea>
+    <p *ngIf="form.get('description')!.touched" class="validation-error">
+      Description is required
+    </p>
   </label>
   <div class="duration-author-wrapper">
     <div class="duration-author">

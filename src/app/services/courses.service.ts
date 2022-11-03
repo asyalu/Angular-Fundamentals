@@ -22,6 +22,10 @@ export class CoursesService {
     return this.http.put(`${this.backendUrl}/${course.id}`, course);
   }
 
+  filterCourses(search: string): Observable<any> {
+    return this.http.get(`${this.backendUrl}/filter${search}`);
+  }
+
   getCourse(id: string): Observable<any> {
     return this.http.get(`${this.backendUrl}/${id}`);
   }

@@ -46,9 +46,11 @@ export class CourseComponent implements OnInit {
         })
       )
       .subscribe((course: any) => {
-        course.result.authors.map((author: string) => this.getAuthor(author));
         if (course) {
+          course.result.authors.map((author: string) => this.getAuthor(author));
           this.course = { ...course.result, authors: this.authorList };
+        } else {
+          this.course.authors.map((author: string) => this.getAuthor(author));
         }
       });
   }

@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-search (searchValue)="getSearch($event)"></app-search>
   <ul class="list" *ngIf="courses">
-    <li class="item" *ngFor="let item of courses | filter: searchText">
+    <li class="item" *ngFor="let item of courses">
       <app-course [course]="item" (deleteButtonAction)="deleteCourse($event)">
       </app-course>
     </li>

@@ -64,7 +64,7 @@ const reducer = createReducer(
   })),
   on(requestFilteredCoursesSuccess, (state, { courses }) => ({
     ...state,
-    courses,
+    allCourses: courses,
   })),
   on(requestDeleteCourseFail, (state, { errorMessage }) => ({
     ...state,

@@ -15,10 +15,15 @@ export const initialState: IUserState = {
 
 export const createUserReducer = createReducer(
   initialState,
-  on(UserAction.requestCurrentUserSuccess, (state, user) => ({
-    ...state,
-    user: user,
-  }))
+  on(
+    UserAction.requestCurrentUserSuccess,
+    (state, { user, name, isAdmin }) => ({
+      ...state,
+      user,
+      name,
+      isAdmin,
+    })
+  )
 );
 
 export const userReducer = (state: IUserState, action: Action) =>

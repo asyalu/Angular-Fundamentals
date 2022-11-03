@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  backendUrl = 'http://localhost:4000/user';
+  backendUrl = 'http://localhost:4000/users';
   constructor(private http: HttpClient) {}
 
   getUser(): Observable<any> {

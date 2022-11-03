@@ -27,8 +27,9 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(requestLogin),
-      mergeMap((payload: any) =>
-        this.authService.login(payload).pipe(
+      mergeMap((payload: any) => {
+        console.log(payload);
+        return this.authService.login(payload).pipe(
           tap((auth: any) => this.sessionStorageService.setToken(auth.result)),
           map((auth: any) =>
             requestLoginSuccess({
@@ -37,8 +38,8 @@ export class AuthEffects {
             })
           ),
           catchError(async (error) => requestLoginFail(error))
-        )
-      )
+        );
+      })
     )
   );
 

@@ -12,6 +12,8 @@ import {
   requestAllCoursesSuccess,
   requestSingleCourse,
   requestSingleCourseSuccess,
+  requestFilteredCourses,
+  requestFilteredCoursesSuccess,
 } from './courses.actions';
 
 @Injectable()
@@ -69,6 +71,18 @@ export class CoursesEffects {
         this.coursesService
           .createCourse(course)
           .pipe(map((course) => requestCreateCourseSuccess(course)))
+      )
+    )
+  );
+
+  filteredCourses$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(requestFilteredCourses),
+      mergeMap(({ search }: { search: string }) =>
+        this.coursesService.filterCourses(search).pipe(
+          map((response) => response.result),
+          map((courses) => requestFilteredCoursesSuccess({ courses }))
+        )
       )
     )
   );

@@ -15,7 +15,13 @@ export class UserEffects {
       ofType(requestCurrentUser),
       mergeMap(() =>
         this.userService.getUser().pipe(
-          map((user) => requestCurrentUserSuccess({ user: user })),
+          map((response) =>
+            requestCurrentUserSuccess({
+              user: response.result,
+              name: response.result.name,
+              isAdmin: response.result.role === 'admin',
+            })
+          ),
           catchError(async () => requestCurrentUserFail())
         )
       )

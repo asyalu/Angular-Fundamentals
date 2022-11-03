@@ -1,12 +1,12 @@
 <div class="search">
-  <input
-    class="input"
-    type="text"
-    #input
-    (keyup.enter)="getValue(input.value)"
-  />
-  <app-button
-    [title]="buttonTitle"
-    (click)="getValue(input.value)"
-  ></app-button>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <input class="input" type="text" formControlName="input" />
+    <div class="form-group">
+      <select formControlName="searchCriteria" class="form-control">
+        <option disabled>Search criteria</option>
+        <option *ngFor="let item of criteriaList">{{ item }}</option>
+      </select>
+    </div>
+    <app-button [title]="buttonTitle" type="submit"></app-button>
+  </form>
 </div>
